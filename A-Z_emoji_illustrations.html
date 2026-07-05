@@ -3,365 +3,265 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A-Z Alphabet Slideshow for Kids</title>
+  <title>A-Z English Alphabet</title>
   <style>
-    :root{
-      --primary:#7c3aed;
-      --secondary:#06b6d4;
-      --yellow:#facc15;
-      --pink:#f472b6;
-      --green:#22c55e;
-      --text:#1f2937;
-    }
-
+    :root { --accent:#7c3aed; --text:#172033; --soft:#ccfbf1; }
     *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:Comic Sans MS, Trebuchet MS, Arial, sans-serif;
-      min-height:100vh;
-      overflow:hidden;
-      color:var(--text);
-      background:linear-gradient(135deg,#fff7ad,#ffd6e8,#c7f9ff,#d9f99d);
-      background-size:400% 400%;
-      animation:bgMove 12s ease infinite;
-    }
-
-    @keyframes bgMove{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-
-    .app{
-      width:100vw;
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      position:relative;
-    }
-
-    .top-bar{
-      position:fixed;
-      top:16px;
-      left:50%;
-      transform:translateX(-50%);
-      width:min(980px,calc(100% - 32px));
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      z-index:10;
-    }
-
-    .badge{
-      background:rgba(255,255,255,.78);
-      backdrop-filter:blur(10px);
-      border:3px solid rgba(255,255,255,.9);
-      border-radius:999px;
-      padding:10px 18px;
-      font-size:18px;
-      font-weight:800;
-      box-shadow:0 8px 20px rgba(0,0,0,.12);
-    }
-
+    body{margin:0;font-family:"Comic Sans MS","Trebuchet MS",Arial,sans-serif;min-height:100vh;overflow:hidden;color:var(--text);background:linear-gradient(135deg,#fff7ad,#ffd6e8,#c7f9ff,#d9f99d);background-size:400% 400%;animation:bgMove 12s ease infinite}
+    @keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .app{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;position:relative}
+    .top-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(1080px,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:10}
+    .badge,.title-pill{background:rgba(255,255,255,.82);border:3px solid rgba(255,255,255,.96);border-radius:999px;padding:10px 18px;font-size:18px;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.12);backdrop-filter:blur(10px)}
+    .title-pill{max-width:42%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+    button,.home-link{border:none;border-radius:999px;padding:11px 17px;font-size:15px;font-weight:900;color:white;cursor:pointer;text-decoration:none;box-shadow:0 8px 18px rgba(0,0,0,.18);transition:transform .2s ease,filter .2s ease}
+    button:hover,.home-link:hover{transform:translateY(-2px) scale(1.03);filter:brightness(1.06)}
+    .btn-purple{background:linear-gradient(135deg,#8b5cf6,#6366f1)}.btn-blue{background:linear-gradient(135deg,#06b6d4,#0ea5e9)}.btn-pink{background:linear-gradient(135deg,#f472b6,#ec4899)}.btn-green{background:linear-gradient(135deg,#22c55e,#16a34a)}.btn-orange{background:linear-gradient(135deg,#fb923c,#f97316)}
+    .slide{display:none;width:min(1080px,95vw);min-height:70vh;margin-top:42px;padding:26px;background:rgba(255,255,255,.74);border:5px solid rgba(255,255,255,.94);border-radius:36px;box-shadow:0 24px 60px rgba(0,0,0,.18);text-align:center;position:relative;overflow:hidden}
+    .slide.active{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:26px;animation:popIn .55s ease}
+    @keyframes popIn{0%{opacity:0;transform:scale(.92) translateY(30px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+    .letter-card{border-radius:32px;padding:22px;background:linear-gradient(160deg,#ffffff,#ffe4f4,#e0f2fe);box-shadow:inset 0 0 0 5px rgba(255,255,255,.75),0 12px 26px rgba(0,0,0,.12);min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .letter{font-size:clamp(90px,16vw,210px);line-height:.9;font-weight:1000;color:var(--accent);text-shadow:6px 6px 0 #facc15,10px 10px 0 rgba(0,0,0,.08);animation:letterBounce 1.7s ease-in-out infinite}
+    @keyframes letterBounce{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+    .phrase{margin-top:22px;font-size:clamp(28px,4vw,52px);font-weight:1000;color:#111827}
+    .subtitle{margin-top:10px;font-size:clamp(16px,2vw,24px);font-weight:900;color:#0f766e;background:var(--soft);border-radius:999px;padding:8px 16px;display:inline-block}
+    .image-card{border-radius:34px;overflow:hidden;background:linear-gradient(145deg,#fff1f2,#fefce8,#ecfeff);box-shadow:0 16px 34px rgba(0,0,0,.17);position:relative;min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+    .emoji-illustration{width:100%;min-height:320px;display:flex;align-items:center;justify-content:center;font-size:clamp(140px,18vw,275px);line-height:1;filter:drop-shadow(0 14px 18px rgba(0,0,0,.18));animation:emojiBounce 2s ease-in-out infinite;user-select:none}
+    @keyframes emojiBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-16px) scale(1.04)}}
 
-    button{
-      border:none;
-      border-radius:999px;
-      padding:11px 17px;
-      font-size:15px;
-      font-weight:800;
-      color:white;
-      cursor:pointer;
-      box-shadow:0 8px 18px rgba(0,0,0,.18);
-      transition:transform .2s ease,filter .2s ease;
-    }
-
-    button:hover{transform:translateY(-2px) scale(1.03);filter:brightness(1.06)}
-    button:active{transform:scale(.97)}
-
-    .btn-purple{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
-    .btn-blue{background:linear-gradient(135deg,#06b6d4,#0ea5e9)}
-    .btn-pink{background:linear-gradient(135deg,#f472b6,#ec4899)}
-    .btn-green{background:linear-gradient(135deg,#22c55e,#16a34a)}
-    .btn-orange{background:linear-gradient(135deg,#fb923c,#f97316)}
-
-    .slide{
-      display:none;
-      width:min(980px,95vw);
-      min-height:70vh;
-      padding:26px;
-      margin-top:42px;
-      background:rgba(255,255,255,.74);
-      border:5px solid rgba(255,255,255,.94);
-      border-radius:36px;
-      box-shadow:0 24px 60px rgba(0,0,0,.18);
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .slide.active{
-      display:grid;
-      grid-template-columns:1fr 1.1fr;
-      align-items:center;
-      gap:26px;
-      animation:popIn .55s ease;
-    }
-
-    @keyframes popIn{
-      0%{opacity:0;transform:scale(.92) translateY(30px)}
-      100%{opacity:1;transform:scale(1) translateY(0)}
-    }
-
-    .letter-card{
-      border-radius:32px;
-      padding:22px;
-      background:linear-gradient(160deg,#ffffff,#ffe4f4,#e0f2fe);
-      box-shadow:inset 0 0 0 5px rgba(255,255,255,.75),0 12px 26px rgba(0,0,0,.12);
-      position:relative;
-      min-height:440px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .letter{
-      font-size:clamp(130px,19vw,230px);
-      line-height:.85;
-      font-weight:1000;
-      color:#7c3aed;
-      text-shadow:6px 6px 0 #facc15,10px 10px 0 rgba(0,0,0,.08);
-      animation:letterBounce 1.7s ease-in-out infinite;
-    }
-
-    @keyframes letterBounce{
-      0%,100%{transform:translateY(0) rotate(-1deg)}
-      50%{transform:translateY(-12px) rotate(1deg)}
-    }
-
-    .phrase{
-      margin-top:22px;
-      font-size:clamp(28px,4vw,52px);
-      font-weight:1000;
-      color:#111827;
-    }
-
-    .phonics{
-      margin-top:10px;
-      font-size:22px;
-      font-weight:800;
-      color:#0f766e;
-      background:#ccfbf1;
-      border-radius:999px;
-      padding:8px 16px;
-      display:inline-block;
-    }
-
-    .image-card{
-      border-radius:34px;
-      overflow:hidden;
-      background:linear-gradient(145deg,#fff1f2,#fefce8,#ecfeff);
-      box-shadow:0 16px 34px rgba(0,0,0,.17);
-      position:relative;
-      min-height:440px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
-
-    .emoji-illustration{
-      width:100%;
-      min-height:320px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:clamp(150px,18vw,280px);
-      line-height:1;
-      filter:drop-shadow(0 14px 18px rgba(0,0,0,.18));
-      animation:emojiBounce 2s ease-in-out infinite;
-      user-select:none;
-    }
-
-    @keyframes emojiBounce{
-      0%,100%{transform:translateY(0) scale(1)}
-      50%{transform:translateY(-16px) scale(1.04)}
-    }
-
-    .image-label{
-      position:absolute;
-      left:18px;
-      bottom:18px;
-      right:18px;
-      background:rgba(255,255,255,.88);
-      backdrop-filter:blur(8px);
-      border-radius:22px;
-      padding:12px;
-      font-size:30px;
-      font-weight:1000;
-      color:#111827;
-      box-shadow:0 8px 18px rgba(0,0,0,.12);
-    }
-
-    .sparkle{
-      position:absolute;
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      background:#facc15;
-      opacity:.75;
-      animation:float 4s ease-in-out infinite;
-    }
-
-    .sparkle:nth-child(1){top:9%;left:8%;background:#fb7185;animation-delay:.1s}
-    .sparkle:nth-child(2){top:20%;right:9%;background:#38bdf8;animation-delay:.7s}
-    .sparkle:nth-child(3){bottom:15%;left:13%;background:#4ade80;animation-delay:1.2s}
-    .sparkle:nth-child(4){bottom:12%;right:11%;background:#facc15;animation-delay:1.7s}
-
-    @keyframes float{
-      0%,100%{transform:translateY(0) scale(1)}
-      50%{transform:translateY(-18px) scale(1.25)}
-    }
-
-    .bottom-nav{
-      position:fixed;
-      bottom:16px;
-      left:50%;
-      transform:translateX(-50%);
-      width:min(980px,calc(100% - 32px));
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      z-index:10;
-    }
-
-    .progress-wrap{
-      flex:1;
-      height:18px;
-      background:rgba(255,255,255,.75);
-      border-radius:999px;
-      overflow:hidden;
-      border:3px solid white;
-      box-shadow:0 6px 14px rgba(0,0,0,.12);
-    }
-
-    .progress{
-      height:100%;
-      width:0%;
-      background:linear-gradient(90deg,#22c55e,#06b6d4,#8b5cf6,#f472b6);
-      border-radius:999px;
-      transition:width .35s ease;
-    }
-
-    .cloud{
-      position:absolute;
-      background:white;
-      width:120px;
-      height:44px;
-      border-radius:999px;
-      opacity:.52;
-      filter:blur(.2px);
-      animation:cloudMove 18s linear infinite;
-    }
-    .cloud:before,.cloud:after{content:"";position:absolute;background:white;border-radius:50%}
-    .cloud:before{width:58px;height:58px;left:18px;top:-26px}
-    .cloud:after{width:68px;height:68px;right:18px;top:-34px}
-    .cloud.one{top:12%;left:-130px;animation-delay:0s}
-    .cloud.two{top:68%;left:-160px;animation-delay:7s;transform:scale(1.2)}
-
-    @keyframes cloudMove{to{left:110vw}}
-
-    .hint{
-      position:fixed;
-      right:18px;
-      top:84px;
-      background:rgba(255,255,255,.75);
-      border-radius:18px;
-      padding:10px 14px;
-      font-size:14px;
-      font-weight:800;
-      box-shadow:0 8px 18px rgba(0,0,0,.11);
-      z-index:9;
-    }
-
-    @media(max-width:760px){
-      .top-bar,.bottom-nav{width:calc(100% - 20px)}
-      .top-bar{top:8px;align-items:flex-start}
-      .badge{font-size:14px;padding:8px 12px}
-      button{font-size:13px;padding:9px 12px}
-      .slide{padding:15px;margin-top:58px;min-height:73vh;border-radius:28px}
-      .slide.active{grid-template-columns:1fr;gap:14px}
-      .letter-card,.image-card{min-height:285px;border-radius:26px}
-      .emoji-illustration{min-height:200px;font-size:150px}
-      .phrase{font-size:32px}
-      .phonics{font-size:18px}
-      .image-label{font-size:24px;padding:9px}
-      .hint{display:none}
-    }
+    .image-label{position:absolute;left:18px;bottom:18px;right:18px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:22px;padding:12px;font-size:30px;font-weight:1000;color:#111827;box-shadow:0 8px 18px rgba(0,0,0,.12)}
+    .sparkle{position:absolute;width:18px;height:18px;border-radius:50%;background:#facc15;opacity:.75;animation:float 4s ease-in-out infinite}
+    .sparkle:nth-child(1){top:9%;left:8%;background:#fb7185;animation-delay:.1s}.sparkle:nth-child(2){top:20%;right:9%;background:#38bdf8;animation-delay:.7s}.sparkle:nth-child(3){bottom:15%;left:13%;background:#4ade80;animation-delay:1.2s}.sparkle:nth-child(4){bottom:12%;right:11%;background:#facc15;animation-delay:1.7s}
+    @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.25)}}
+    .bottom-nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:min(1080px,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:10}
+    .progress-wrap{flex:1;height:18px;background:rgba(255,255,255,.75);border-radius:999px;overflow:hidden;border:3px solid white;box-shadow:0 6px 14px rgba(0,0,0,.12)}.progress{height:100%;width:0%;background:linear-gradient(90deg,#22c55e,#06b6d4,#8b5cf6,#f472b6);border-radius:999px;transition:width .35s ease}
+    .hint{position:fixed;right:18px;top:84px;background:rgba(255,255,255,.75);border-radius:18px;padding:10px 14px;font-size:14px;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.11);z-index:9}
+    @media(max-width:760px){.top-bar,.bottom-nav{width:calc(100% - 20px)}.top-bar{top:8px;align-items:flex-start}.title-pill{display:none}.badge{font-size:14px;padding:8px 12px}button,.home-link{font-size:13px;padding:9px 12px}.slide{padding:15px;margin-top:58px;min-height:73vh;border-radius:28px}.slide.active{grid-template-columns:1fr;gap:14px}.letter-card,.image-card{min-height:285px;border-radius:26px}.emoji-illustration{min-height:200px;font-size:150px}.circle-grid{min-height:200px;grid-template-columns:repeat(5,1fr);gap:10px;padding:12px}.phrase{font-size:32px}.subtitle{font-size:18px}.image-label{font-size:24px;padding:9px}.hint{display:none}}
   </style>
 </head>
 <body>
-  <div class="cloud one"></div>
-  <div class="cloud two"></div>
-
   <main class="app" id="app">
     <div class="top-bar">
       <div class="badge" id="counter">Slide 1 of 26</div>
-      <div class="buttons">
-        <button class="btn-pink" onclick="speakCurrent()">🔊 Speak</button>
-        <button class="btn-green" onclick="toggleAuto()" id="autoBtn">⏸ Pause</button>
-        <button class="btn-orange" onclick="toggleFullScreen()">⛶ Full Screen</button>
-      </div>
+      <div class="title-pill">A-Z English Alphabet</div>
+      <div class="buttons"><a class="home-link btn-purple" href="index.html">🏠 Home</a><button class="btn-pink" onclick="speakCurrent()">🔊 Speak</button><button class="btn-green" onclick="toggleAuto()" id="autoBtn">⏸ Pause</button><button class="btn-orange" onclick="toggleFullScreen()">⛶ Full Screen</button></div>
     </div>
-
     <div class="hint">Tip: Use ← → keys</div>
     <section id="slides"></section>
-
-    <div class="bottom-nav">
-      <button class="btn-purple" onclick="prevSlide()">⬅ Previous</button>
-      <div class="progress-wrap"><div class="progress" id="progress"></div></div>
-      <button class="btn-blue" onclick="nextSlide()">Next ➡</button>
-    </div>
+    <div class="bottom-nav"><button class="btn-purple" onclick="prevSlide()">⬅ Previous</button><div class="progress-wrap"><div class="progress" id="progress"></div></div><button class="btn-blue" onclick="nextSlide()">Next ➡</button></div>
   </main>
-
   <script>
+    const speechLang = "en-US";
     const items = [
-      {letter:'A', word:'Apple', emoji:'🍎', sound:'A for Apple'},
-      {letter:'B', word:'Ball', emoji:'⚽', sound:'B for Ball'},
-      {letter:'C', word:'Cat', emoji:'🐱', sound:'C for Cat'},
-      {letter:'D', word:'Dog', emoji:'🐶', sound:'D for Dog'},
-      {letter:'E', word:'Elephant', emoji:'🐘', sound:'E for Elephant'},
-      {letter:'F', word:'Fish', emoji:'🐟', sound:'F for Fish'},
-      {letter:'G', word:'Grapes', emoji:'🍇', sound:'G for Grapes'},
-      {letter:'H', word:'House', emoji:'🏠', sound:'H for House'},
-      {letter:'I', word:'Ice Cream', emoji:'🍦', sound:'I for Ice Cream'},
-      {letter:'J', word:'Juice', emoji:'🧃', sound:'J for Juice'},
-      {letter:'K', word:'Kite', emoji:'🪁', sound:'K for Kite'},
-      {letter:'L', word:'Lion', emoji:'🦁', sound:'L for Lion'},
-      {letter:'M', word:'Monkey', emoji:'🐵', sound:'M for Monkey'},
-      {letter:'N', word:'Nest', emoji:'🪺', sound:'N for Nest'},
-      {letter:'O', word:'Orange', emoji:'🍊', sound:'O for Orange'},
-      {letter:'P', word:'Parrot', emoji:'🦜', sound:'P for Parrot'},
-      {letter:'Q', word:'Queen', emoji:'👑', sound:'Q for Queen'},
-      {letter:'R', word:'Rabbit', emoji:'🐰', sound:'R for Rabbit'},
-      {letter:'S', word:'Sun', emoji:'☀️', sound:'S for Sun'},
-      {letter:'T', word:'Tiger', emoji:'🐯', sound:'T for Tiger'},
-      {letter:'U', word:'Umbrella', emoji:'☂️', sound:'U for Umbrella'},
-      {letter:'V', word:'Van', emoji:'🚐', sound:'V for Van'},
-      {letter:'W', word:'Watch', emoji:'⌚', sound:'W for Watch'},
-      {letter:'X', word:'Xylophone', emoji:'🎼', sound:'X for Xylophone'},
-      {letter:'Y', word:'Yak', emoji:'🐂', sound:'Y for Yak'},
-      {letter:'Z', word:'Zebra', emoji:'🦓', sound:'Z for Zebra'}
-    ];
+      {
+            "letter": "A",
+            "title": "A for Apple",
+            "emoji": "🍎",
+            "sound": "A for Apple",
+            "sub": "Say: A for Apple",
+            "label": "Apple"
+      },
+      {
+            "letter": "B",
+            "title": "B for Ball",
+            "emoji": "⚽",
+            "sound": "B for Ball",
+            "sub": "Say: B for Ball",
+            "label": "Ball"
+      },
+      {
+            "letter": "C",
+            "title": "C for Cat",
+            "emoji": "🐱",
+            "sound": "C for Cat",
+            "sub": "Say: C for Cat",
+            "label": "Cat"
+      },
+      {
+            "letter": "D",
+            "title": "D for Dog",
+            "emoji": "🐶",
+            "sound": "D for Dog",
+            "sub": "Say: D for Dog",
+            "label": "Dog"
+      },
+      {
+            "letter": "E",
+            "title": "E for Elephant",
+            "emoji": "🐘",
+            "sound": "E for Elephant",
+            "sub": "Say: E for Elephant",
+            "label": "Elephant"
+      },
+      {
+            "letter": "F",
+            "title": "F for Fish",
+            "emoji": "🐟",
+            "sound": "F for Fish",
+            "sub": "Say: F for Fish",
+            "label": "Fish"
+      },
+      {
+            "letter": "G",
+            "title": "G for Grapes",
+            "emoji": "🍇",
+            "sound": "G for Grapes",
+            "sub": "Say: G for Grapes",
+            "label": "Grapes"
+      },
+      {
+            "letter": "H",
+            "title": "H for House",
+            "emoji": "🏠",
+            "sound": "H for House",
+            "sub": "Say: H for House",
+            "label": "House"
+      },
+      {
+            "letter": "I",
+            "title": "I for Ice Cream",
+            "emoji": "🍦",
+            "sound": "I for Ice Cream",
+            "sub": "Say: I for Ice Cream",
+            "label": "Ice Cream"
+      },
+      {
+            "letter": "J",
+            "title": "J for Juice",
+            "emoji": "🧃",
+            "sound": "J for Juice",
+            "sub": "Say: J for Juice",
+            "label": "Juice"
+      },
+      {
+            "letter": "K",
+            "title": "K for Kite",
+            "emoji": "🪁",
+            "sound": "K for Kite",
+            "sub": "Say: K for Kite",
+            "label": "Kite"
+      },
+      {
+            "letter": "L",
+            "title": "L for Lion",
+            "emoji": "🦁",
+            "sound": "L for Lion",
+            "sub": "Say: L for Lion",
+            "label": "Lion"
+      },
+      {
+            "letter": "M",
+            "title": "M for Monkey",
+            "emoji": "🐵",
+            "sound": "M for Monkey",
+            "sub": "Say: M for Monkey",
+            "label": "Monkey"
+      },
+      {
+            "letter": "N",
+            "title": "N for Nest",
+            "emoji": "🪺",
+            "sound": "N for Nest",
+            "sub": "Say: N for Nest",
+            "label": "Nest"
+      },
+      {
+            "letter": "O",
+            "title": "O for Orange",
+            "emoji": "🍊",
+            "sound": "O for Orange",
+            "sub": "Say: O for Orange",
+            "label": "Orange"
+      },
+      {
+            "letter": "P",
+            "title": "P for Parrot",
+            "emoji": "🦜",
+            "sound": "P for Parrot",
+            "sub": "Say: P for Parrot",
+            "label": "Parrot"
+      },
+      {
+            "letter": "Q",
+            "title": "Q for Queen",
+            "emoji": "👑",
+            "sound": "Q for Queen",
+            "sub": "Say: Q for Queen",
+            "label": "Queen"
+      },
+      {
+            "letter": "R",
+            "title": "R for Rabbit",
+            "emoji": "🐰",
+            "sound": "R for Rabbit",
+            "sub": "Say: R for Rabbit",
+            "label": "Rabbit"
+      },
+      {
+            "letter": "S",
+            "title": "S for Sun",
+            "emoji": "☀️",
+            "sound": "S for Sun",
+            "sub": "Say: S for Sun",
+            "label": "Sun"
+      },
+      {
+            "letter": "T",
+            "title": "T for Tiger",
+            "emoji": "🐯",
+            "sound": "T for Tiger",
+            "sub": "Say: T for Tiger",
+            "label": "Tiger"
+      },
+      {
+            "letter": "U",
+            "title": "U for Umbrella",
+            "emoji": "☂️",
+            "sound": "U for Umbrella",
+            "sub": "Say: U for Umbrella",
+            "label": "Umbrella"
+      },
+      {
+            "letter": "V",
+            "title": "V for Van",
+            "emoji": "🚐",
+            "sound": "V for Van",
+            "sub": "Say: V for Van",
+            "label": "Van"
+      },
+      {
+            "letter": "W",
+            "title": "W for Watch",
+            "emoji": "⌚",
+            "sound": "W for Watch",
+            "sub": "Say: W for Watch",
+            "label": "Watch"
+      },
+      {
+            "letter": "X",
+            "title": "X for Xylophone",
+            "emoji": "🎼",
+            "sound": "X for Xylophone",
+            "sub": "Say: X for Xylophone",
+            "label": "Xylophone"
+      },
+      {
+            "letter": "Y",
+            "title": "Y for Yak",
+            "emoji": "🐂",
+            "sound": "Y for Yak",
+            "sub": "Say: Y for Yak",
+            "label": "Yak"
+      },
+      {
+            "letter": "Z",
+            "title": "Z for Zebra",
+            "emoji": "🦓",
+            "sound": "Z for Zebra",
+            "sub": "Say: Z for Zebra",
+            "label": "Zebra"
+      }
+];
 
     const slidesContainer = document.getElementById('slides');
     const counter = document.getElementById('counter');
@@ -370,97 +270,27 @@
     let current = 0;
     let autoPlay = true;
     let timer;
-
     items.forEach((item, index) => {
       const slide = document.createElement('article');
       slide.className = 'slide' + (index === 0 ? ' active' : '');
-      slide.innerHTML = `
-        <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
-        <div class="letter-card">
-          <div class="letter">${item.letter}</div>
-          <div class="phrase">${item.letter} for ${item.word}</div>
-          <div class="phonics">Say: ${item.sound}</div>
-        </div>
-        <div class="image-card">
-          <div class="emoji-illustration" aria-label="${item.word} illustration" title="${item.word}">${item.emoji}</div>
-          <div class="image-label">${item.word}</div>
-        </div>
-      `;
+      slide.innerHTML = `<span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
+        <div class="letter-card"><div class="letter">${item.letter}</div><div class="phrase">${item.title}</div><div class="subtitle">${item.sub || item.sound}</div></div>
+        <div class="image-card"><div class="emoji-illustration" aria-label="${item.title} illustration" title="${item.title}">${item.emoji}</div><div class="image-label">${item.label || item.title}</div></div>`;
       slidesContainer.appendChild(slide);
     });
-
     const slides = document.querySelectorAll('.slide');
-
-    function updateUI(){
-      counter.textContent = `Slide ${current + 1} of ${items.length}`;
-      progress.style.width = `${((current + 1) / items.length) * 100}%`;
-    }
-
-    function speak(text){
-      if(!('speechSynthesis' in window)){
-        alert('Voice pronunciation is not supported in this browser.');
-        return;
-      }
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.78;
-      utterance.pitch = 1.15;
-      utterance.volume = 1;
-      window.speechSynthesis.speak(utterance);
-    }
-
-    function speakCurrent(){
-      speak(items[current].sound);
-    }
-
-    function showSlide(nextIndex, shouldSpeak = true){
-      slides[current].classList.remove('active');
-      current = (nextIndex + slides.length) % slides.length;
-      slides[current].classList.add('active');
-      updateUI();
-      if(shouldSpeak) speakCurrent();
-    }
-
-    function nextSlide(){showSlide(current + 1)}
-    function prevSlide(){showSlide(current - 1)}
-
-    function startTimer(){
-      clearInterval(timer);
-      timer = setInterval(() => {
-        if(autoPlay) nextSlide();
-      }, 4200);
-    }
-
-    function toggleAuto(){
-      autoPlay = !autoPlay;
-      autoBtn.textContent = autoPlay ? '⏸ Pause' : '▶ Play';
-      if(autoPlay) speakCurrent();
-    }
-
-    function toggleFullScreen(){
-      const el = document.documentElement;
-      if(!document.fullscreenElement){
-        if(el.requestFullscreen) el.requestFullscreen();
-      } else {
-        if(document.exitFullscreen) document.exitFullscreen();
-      }
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'ArrowRight') nextSlide();
-      if(e.key === 'ArrowLeft') prevSlide();
-      if(e.key.toLowerCase() === 'f') toggleFullScreen();
-      if(e.key === ' ') { e.preventDefault(); toggleAuto(); }
-    });
-
-    document.addEventListener('click', (e) => {
-      if(e.target.tagName !== 'BUTTON') speakCurrent();
-    });
-
-    updateUI();
-    startTimer();
-    setTimeout(() => speakCurrent(), 700);
+    function updateUI(){counter.textContent = `Slide ${current + 1} of ${items.length}`; progress.style.width = `${((current + 1) / items.length) * 100}%`;}
+    function speak(text){ if(!('speechSynthesis' in window)){ alert('Voice pronunciation is not supported in this browser.'); return; } window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang=speechLang; u.rate=.78; u.pitch=1.15; u.volume=1; window.speechSynthesis.speak(u); }
+    function speakCurrent(){ speak(items[current].sound); }
+    function showSlide(nextIndex, shouldSpeak = true){slides[current].classList.remove('active'); current=(nextIndex+slides.length)%slides.length; slides[current].classList.add('active'); updateUI(); if(shouldSpeak) speakCurrent();}
+    function nextSlide(){showSlide(current+1)}
+    function prevSlide(){showSlide(current-1)}
+    function startTimer(){clearInterval(timer); timer=setInterval(()=>{ if(autoPlay) nextSlide(); },4200);}
+    function toggleAuto(){autoPlay=!autoPlay; autoBtn.textContent=autoPlay?'⏸ Pause':'▶ Play'; if(autoPlay) speakCurrent();}
+    function toggleFullScreen(){const el=document.documentElement; if(!document.fullscreenElement){ if(el.requestFullscreen) el.requestFullscreen(); } else { if(document.exitFullscreen) document.exitFullscreen(); }}
+    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight') nextSlide(); if(e.key==='ArrowLeft') prevSlide(); if(e.key.toLowerCase()==='f') toggleFullScreen(); if(e.key===' '){e.preventDefault(); toggleAuto();}});
+    document.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON' && e.target.tagName!=='A') speakCurrent();});
+    updateUI(); startTimer(); setTimeout(()=>speakCurrent(),700);
   </script>
 </body>
 </html>
