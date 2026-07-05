@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Learning Cards</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --modal-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        /* Dashboard Grid */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* Modal (Slideshow) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .slide-counter {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .slide-image {
+            font-size: 80px;
+            margin: 20px 0;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-name {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: var(--text-color);
+        }
+
+        .action-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-btn {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: #333;
+        }
+
+        .nav-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Learning Dashboard</h1>
+
+    <!-- Dashboard Cards -->
+    <div class="dashboard">
+        <div class="card"  >
+            <div class="card-icon" onclick="window.location.href='A-Z_emoji_illustrations.html';">🔤</div>
+            <div class="card-title">A - Z List</div>
+        </div>
+        <div class="card" onclick="openSlideshow('fruits')">
+            <div class="card-icon">🍎</div>
+            <div class="card-title">Fruits List</div>
+        </div>
+        <div class="card" onclick="openSlideshow('vehicles')">
+            <div class="card-icon">🚗</div>
+            <div class="card-title">Vehicles List</div>
+        </div>
+        <div class="card" onclick="openSlideshow('flowers')">
+            <div class="card-icon">🌸</div>
+            <div class="card-title">Flowers List</div>
+        </div>
+        <div class="card" onclick="openSlideshow('colors')">
+            <div class="card-icon">🎨</div>
+            <div class="card-title">Color List</div>
+        </div>
+    </div>
+
+</body>
+</html>
